@@ -100,12 +100,12 @@ Select the information or data that you want. `city` is a table name and `custom
 SELECT city FROM customers
 ```
 
-| <-T->                           | city      |
-| :------------------------------ | :-------- |
-| Edit, Inline Edit, Copy, Delete | City Name |
-| Edit, Inline Edit, Copy, Delete | City Name |
-| Edit, Inline Edit, Copy, Delete | City Name |
-| Edit, Inline Edit, Copy, Delete | City Name |
+| city      |
+| :-------- |
+| City Name |
+| City Name |
+| City Name |
+| City Name |
 
 <br />
 
@@ -139,12 +139,12 @@ separates comma's through table name
 SELECT name, zip FROM customers
 ```
 
-| <-T->                           | city      | zip      |
-| :------------------------------ | :-------- | :------- |
-| Edit, Inline Edit, Copy, Delete | city name | zip Code |
-| Edit, Inline Edit, Copy, Delete | city name | zip Code |
-| Edit, Inline Edit, Copy, Delete | city name | zip Code |
-| Edit, Inline Edit, Copy, Delete | city name | zip Code |
+| city      | zip      |
+| :-------- | :------- |
+| city name | zip Code |
+| city name | zip Code |
+| city name | zip Code |
+| city name | zip Code |
 
 <br />
 
@@ -156,12 +156,12 @@ Use asterisk symbol (\*) to retrieve all columns. This is a wild card statement.
 SELECT * FROM customers
 ```
 
-| <-T->                           | id     | name | zip      | address | city |
-| :------------------------------ | :----- | :--- | :------- | :------ | :--- |
-| Edit, Inline Edit, Copy, Delete | id no. | name | zip Code | address | city |
-| Edit, Inline Edit, Copy, Delete | id no. | name | zip Code | address | city |
-| Edit, Inline Edit, Copy, Delete | id no. | name | zip Code | address | city |
-| Edit, Inline Edit, Copy, Delete | id no. | name | zip Code | address | city |
+| id     | name | zip      | address | city |
+| :----- | :--- | :------- | :------ | :--- |
+| id no. | name | zip Code | address | city |
+| id no. | name | zip Code | address | city |
+| id no. | name | zip Code | address | city |
+| id no. | name | zip Code | address | city |
 
 <br />
 
@@ -173,13 +173,13 @@ It will retrieve data from the beginning.
 SELECT id, name FROM customers LIMIT 5
 ```
 
-| <-T->                           | id  | name |
-| :------------------------------ | :-- | :--- |
-| Edit, Inline Edit, Copy, Delete | 1   | name |
-| Edit, Inline Edit, Copy, Delete | 2   | name |
-| Edit, Inline Edit, Copy, Delete | 3   | name |
-| Edit, Inline Edit, Copy, Delete | 4   | name |
-| Edit, Inline Edit, Copy, Delete | 5   | name |
+| id  | name |
+| :-- | :--- |
+| 1   | name |
+| 2   | name |
+| 3   | name |
+| 4   | name |
+| 5   | name |
 
 <br />
 
@@ -191,18 +191,18 @@ Out of the two numbers given after the limit keyword, the first number is the st
 SELECT id, name FROM customers LIMIT 5, 10
 ```
 
-| <-T->                           | id  | name |
-| :------------------------------ | :-- | :--- |
-| Edit, Inline Edit, Copy, Delete | 6   | name |
-| Edit, Inline Edit, Copy, Delete | 7   | name |
-| Edit, Inline Edit, Copy, Delete | 8   | name |
-| Edit, Inline Edit, Copy, Delete | 9   | name |
-| Edit, Inline Edit, Copy, Delete | 10  | name |
-| Edit, Inline Edit, Copy, Delete | 11  | name |
-| Edit, Inline Edit, Copy, Delete | 12  | name |
-| Edit, Inline Edit, Copy, Delete | 13  | name |
-| Edit, Inline Edit, Copy, Delete | 14  | name |
-| Edit, Inline Edit, Copy, Delete | 15  | name |
+| id  | name |
+| :-- | :--- |
+| 6   | name |
+| 7   | name |
+| 8   | name |
+| 9   | name |
+| 10  | name |
+| 11  | name |
+| 12  | name |
+| 13  | name |
+| 14  | name |
+| 15  | name |
 
 <br />
 
@@ -256,16 +256,16 @@ This statement one order criteria first order by state and than by name.
 SELECT state, city, name FROM customers ORDER BY state, name
 ```
 
-| <-T->                           | statue | city         | name             |
-| :------------------------------ | :----- | :----------- | :--------------- |
-| Edit, Inline Edit, Copy, Delete | AK     | Simmersville | Corey Smith      |
-| Edit, Inline Edit, Copy, Delete | AK     | Anchorage    | Ruth Bolen       |
-| Edit, Inline Edit, Copy, Delete | AL     | Tuscaloosa   | Crystal Jarvis   |
-| Edit, Inline Edit, Copy, Delete | AL     | Montgomery   | Perry Jordan     |
-| Edit, Inline Edit, Copy, Delete | AL     | Mobile       | Thomas Jackson   |
-| Edit, Inline Edit, Copy, Delete | AR     | Texarkana    | Katherine Cain   |
-| Edit, Inline Edit, Copy, Delete | AZ     | Mesa         | Debra Talkington |
-| Edit, Inline Edit, Copy, Delete | AZ     | Phoenix      | Sherry Gibbons   |
+| statue | city         | name             |
+| :----- | :----------- | :--------------- |
+| AK     | Simmersville | Corey Smith      |
+| AK     | Anchorage    | Ruth Bolen       |
+| AL     | Tuscaloosa   | Crystal Jarvis   |
+| AL     | Montgomery   | Perry Jordan     |
+| AL     | Mobile       | Thomas Jackson   |
+| AR     | Texarkana    | Katherine Cain   |
+| AZ     | Mesa         | Debra Talkington |
+| AZ     | Phoenix      | Sherry Gibbons   |
 
 <br />
 
@@ -295,9 +295,9 @@ SELECT name, city FROM customers ORDER BY id DESC
 SELECT name, id FROM customers ORDER BY id DESC LIMIT 1
 ```
 
-| <-T->                           | id  | name         |
-| :------------------------------ | :-- | :----------- |
-| Edit, Inline Edit, Copy, Delete | 96  | Lucy Bronson |
+| id  | name         |
+| :-- | :----------- |
+| 96  | Lucy Bronson |
 
 <br />
 
@@ -307,9 +307,9 @@ SELECT name, id FROM customers ORDER BY id DESC LIMIT 1
 SELECT id, name FROM customers WHERE id=56
 ```
 
-| <-T->                           | id  | name           |
-| :------------------------------ | :-- | :------------- |
-| Edit, Inline Edit, Copy, Delete | 56  | Sherry Gibbons |
+| id  | name           |
+| :-- | :------------- |
+| 56  | Sherry Gibbons |
 
 <br />
 
@@ -319,12 +319,12 @@ SELECT id, name FROM customers WHERE id=56
 SELECT id, name FROM customers WHERE id != 56
 ```
 
-| <-T->                           | id  | name          |
-| :------------------------------ | :-- | :------------ |
-| Edit, Inline Edit, Copy, Delete | 54  | David Turner  |
-| Edit, Inline Edit, Copy, Delete | 55  | Bucky Roberts |
-| Edit, Inline Edit, Copy, Delete | 57  | Noah Parker   |
-| Edit, Inline Edit, Copy, Delete | 58  | Kelsey Burger |
+| id  | name          |
+| :-- | :------------ |
+| 54  | David Turner  |
+| 55  | Bucky Roberts |
+| 57  | Noah Parker   |
+| 58  | Kelsey Burger |
 
 <br />
 
@@ -334,11 +334,11 @@ SELECT id, name FROM customers WHERE id != 56
 SELECT id, name FROM customers WHERE id < 4
 ```
 
-| <-T->                           | id  | name          |
-| :------------------------------ | :-- | :------------ |
-| Edit, Inline Edit, Copy, Delete | 1   | Bucky Roberts |
-| Edit, Inline Edit, Copy, Delete | 2   | Noah Parker   |
-| Edit, Inline Edit, Copy, Delete | 3   | Kelsey Burger |
+| id  | name          |
+| :-- | :------------ |
+| 1   | Bucky Roberts |
+| 2   | Noah Parker   |
+| 3   | Kelsey Burger |
 
 <br />
 
@@ -348,12 +348,12 @@ SELECT id, name FROM customers WHERE id < 4
 SELECT id, name FROM customers WHERE id <= 4
 ```
 
-| <-T->                           | id  | name          |
-| :------------------------------ | :-- | :------------ |
-| Edit, Inline Edit, Copy, Delete | 1   | Bucky Roberts |
-| Edit, Inline Edit, Copy, Delete | 2   | Noah Parker   |
-| Edit, Inline Edit, Copy, Delete | 3   | Kelsey Burger |
-| Edit, Inline Edit, Copy, Delete | 4   | Corey Smith   |
+| id  | name          |
+| :-- | :------------ |
+| 1   | Bucky Roberts |
+| 2   | Noah Parker   |
+| 3   | Kelsey Burger |
+| 4   | Corey Smith   |
 
 <br />
 
@@ -387,13 +387,13 @@ SELECT id, name FROM customers WHERE id BETWEEN 25 AND 30
 SELECT id, state FROM customers WHERE state = 'CA'
 ```
 
-| <-T->                           | id  | state |
-| :------------------------------ | :-- | :---- |
-| Edit, Inline Edit, Copy, Delete | 3   | CA    |
-| Edit, Inline Edit, Copy, Delete | 11  | CA    |
-| Edit, Inline Edit, Copy, Delete | 32  | CA    |
-| Edit, Inline Edit, Copy, Delete | 51  | CA    |
-| Edit, Inline Edit, Copy, Delete | 64  | CA    |
-| Edit, Inline Edit, Copy, Delete | 75  | CA    |
+| id  | state |
+| :-- | :---- |
+| 3   | CA    |
+| 11  | CA    |
+| 32  | CA    |
+| 51  | CA    |
+| 64  | CA    |
+| 75  | CA    |
 
 <br />
