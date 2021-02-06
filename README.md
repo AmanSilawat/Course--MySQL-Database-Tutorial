@@ -229,7 +229,9 @@ SELECT name FROM customers
 <br />
 
 ### Sorting single column
-sorted alphabetically.
+
+sorted alphabetically. The default sort will be in **ascending** order.
+
 ```
 SELECT name FROM customers ORDER BY name
 ```
@@ -237,7 +239,9 @@ SELECT name FROM customers ORDER BY name
 <br />
 
 ### Sorting single column with two column
+
 sorted alphabetically.
+
 ```
 SELECT name, city FROM customers ORDER BY id
 ```
@@ -245,20 +249,151 @@ SELECT name, city FROM customers ORDER BY id
 <br />
 
 ### Sorting multiple column
+
 This statement one order criteria first order by state and than by name.
+
 ```
 SELECT state, city, name FROM customers ORDER BY state, name
 ```
 
-| <-T->                           | statue | city        | name             |
-| :------------------------------ | :--    | :---        |:--               |
-| Edit, Inline Edit, Copy, Delete | AK     | Simmersville| Corey Smith      |
-| Edit, Inline Edit, Copy, Delete | AK     | Anchorage   | Ruth Bolen       |
-| Edit, Inline Edit, Copy, Delete | AL     | Tuscaloosa  | Crystal Jarvis   |
-| Edit, Inline Edit, Copy, Delete | AL     | Montgomery  | Perry Jordan     |
-| Edit, Inline Edit, Copy, Delete | AL     | Mobile      | Thomas Jackson   |
-| Edit, Inline Edit, Copy, Delete | AR     | Texarkana   | Katherine Cain   |
-| Edit, Inline Edit, Copy, Delete | AZ     | Mesa        | Debra Talkington |
-| Edit, Inline Edit, Copy, Delete | AZ     | Phoenix     | Sherry Gibbons   |
+| <-T->                           | statue | city         | name             |
+| :------------------------------ | :----- | :----------- | :--------------- |
+| Edit, Inline Edit, Copy, Delete | AK     | Simmersville | Corey Smith      |
+| Edit, Inline Edit, Copy, Delete | AK     | Anchorage    | Ruth Bolen       |
+| Edit, Inline Edit, Copy, Delete | AL     | Tuscaloosa   | Crystal Jarvis   |
+| Edit, Inline Edit, Copy, Delete | AL     | Montgomery   | Perry Jordan     |
+| Edit, Inline Edit, Copy, Delete | AL     | Mobile       | Thomas Jackson   |
+| Edit, Inline Edit, Copy, Delete | AR     | Texarkana    | Katherine Cain   |
+| Edit, Inline Edit, Copy, Delete | AZ     | Mesa         | Debra Talkington |
+| Edit, Inline Edit, Copy, Delete | AZ     | Phoenix      | Sherry Gibbons   |
+
+<br />
+
+### Descending sorting single column
+
+alphabetically Descending sorting.
+
+```
+SELECT name FROM customers ORDER BY name DESC
+```
+
+<br />
+
+### Descending sorting single column with two column
+
+alphabetically Descending sorting.
+
+```
+SELECT name, city FROM customers ORDER BY id DESC
+```
+
+<br />
+
+### Retrieve the row whose ID is the highest.
+
+```
+SELECT name, id FROM customers ORDER BY id DESC LIMIT 1
+```
+
+| <-T->                           | id  | name         |
+| :------------------------------ | :-- | :----------- |
+| Edit, Inline Edit, Copy, Delete | 96  | Lucy Bronson |
+
+<br />
+
+### Get specific row
+
+```
+SELECT id, name FROM customers WHERE id=56
+```
+
+| <-T->                           | id  | name           |
+| :------------------------------ | :-- | :------------- |
+| Edit, Inline Edit, Copy, Delete | 56  | Sherry Gibbons |
+
+<br />
+
+### Get rows but specific row not contain
+
+```
+SELECT id, name FROM customers WHERE id != 56
+```
+
+| <-T->                           | id  | name          |
+| :------------------------------ | :-- | :------------ |
+| Edit, Inline Edit, Copy, Delete | 54  | David Turner  |
+| Edit, Inline Edit, Copy, Delete | 55  | Bucky Roberts |
+| Edit, Inline Edit, Copy, Delete | 57  | Noah Parker   |
+| Edit, Inline Edit, Copy, Delete | 58  | Kelsey Burger |
+
+<br />
+
+### Get rows less than specific number
+
+```
+SELECT id, name FROM customers WHERE id < 4
+```
+
+| <-T->                           | id  | name          |
+| :------------------------------ | :-- | :------------ |
+| Edit, Inline Edit, Copy, Delete | 1   | Bucky Roberts |
+| Edit, Inline Edit, Copy, Delete | 2   | Noah Parker   |
+| Edit, Inline Edit, Copy, Delete | 3   | Kelsey Burger |
+
+<br />
+
+### Get rows less than and equal to specific number
+
+```
+SELECT id, name FROM customers WHERE id <= 4
+```
+
+| <-T->                           | id  | name          |
+| :------------------------------ | :-- | :------------ |
+| Edit, Inline Edit, Copy, Delete | 1   | Bucky Roberts |
+| Edit, Inline Edit, Copy, Delete | 2   | Noah Parker   |
+| Edit, Inline Edit, Copy, Delete | 3   | Kelsey Burger |
+| Edit, Inline Edit, Copy, Delete | 4   | Corey Smith   |
+
+<br />
+
+### Get rows grater than specific number
+
+```
+SELECT id, name FROM customers WHERE id > 4
+```
+
+<br />
+
+### Get rows grater than equal to specific number
+
+```
+SELECT id, name FROM customers WHERE id >= 4
+```
+
+<br />
+
+### Get rows between two numbers
+
+```
+SELECT id, name FROM customers WHERE id BETWEEN 25 AND 30
+```
+
+<br />
+
+### Get rows between filtering with string
+
+```
+SELECT id, state FROM customers WHERE state = 'CA'
+```
+
+| <-T->                           | id  | state |
+| :------------------------------ | :-- | :---- |
+| Edit, Inline Edit, Copy, Delete | 3   | CA    |
+| Edit, Inline Edit, Copy, Delete | 11  | CA    |
+| Edit, Inline Edit, Copy, Delete | 32  | CA    |
+| Edit, Inline Edit, Copy, Delete | 51  | CA    |
+| Edit, Inline Edit, Copy, Delete | 64  | CA    |
+| Edit, Inline Edit, Copy, Delete | 75  | CA    |
 
 <br />
