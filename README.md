@@ -106,3 +106,32 @@ Whitespace and new-line allowed in SQL for readability purpose.
 SELECT       city
 FROM customers
 ```
+
+<br />
+
+### Get multiple columns from a database
+separates comma's through table name
+```
+SELECT name, zip FROM customers
+```
+|<-T->                          |city      |zip       |
+|:----------------------------- |:-------- |:-------- |
+|Edit, Inline Edit, Copy, Delete|city name |zip Code  |
+|Edit, Inline Edit, Copy, Delete|city name |zip Code  |
+|Edit, Inline Edit, Copy, Delete|city name |zip Code  |
+|Edit, Inline Edit, Copy, Delete|city name |zip Code  |
+
+<br />
+
+###  Get all column from a database
+Use asterisk symbol (*) to retrieve all columns. This is a wild card statement.
+```
+SELECT * FROM customers
+```
+
+|<-T->                          |id      |name    | zip       |address       |city       |
+|:----------------------------- |:------ |:------ |:-------- |:-------- |:-------- |
+|Edit, Inline Edit, Copy, Delete|id no.  |name    | zip Code  |address  |city  |
+|Edit, Inline Edit, Copy, Delete|id no.  |name    | zip Code  |address  |city  |
+|Edit, Inline Edit, Copy, Delete|id no.  |name    | zip Code  |address  |city  |
+|Edit, Inline Edit, Copy, Delete|id no.  |name    | zip Code  |address  |city  |
