@@ -44,7 +44,7 @@ only thing that's not going to be in capital letters is table name and column na
 
 We will use this command to show the list of databases.
 
-```
+```sql
 SHOW DATABASES
 ```
 
@@ -63,7 +63,7 @@ SHOW DATABASES
 
 Returns the table from a specific database.
 
-```
+```sql
 SHOW TABLES
 ```
 
@@ -77,7 +77,7 @@ SHOW TABLES
 
 Table name must be in lowercase. When ever do you run this command then return the names of columns i.e. `id`, `name`, etc and some other information. `PRI` mean this a primary key.
 
-```
+```sql
 SHOW COLUMNS FROM customers
 ```
 
@@ -96,7 +96,7 @@ SHOW COLUMNS FROM customers
 
 Select the information or data that you want. `city` is a table name and `customers` is a table name.
 
-```
+```sql
 SELECT city FROM customers
 ```
 
@@ -113,7 +113,7 @@ SELECT city FROM customers
 
 To run multi line command in SQL, use the semi column at the end of the line. Semi columns are not required in a single line command.
 
-```
+```sql
 SELECT city FROM customers;
 SELECT id FROM customers;
 ```
@@ -124,7 +124,7 @@ SELECT id FROM customers;
 
 Whitespace and new-line allowed in SQL for readability purpose.
 
-```
+```sql
 SELECT       city
 FROM customers
 ```
@@ -135,7 +135,7 @@ FROM customers
 
 separates comma's through table name
 
-```
+```sql
 SELECT name, zip FROM customers
 ```
 
@@ -152,7 +152,7 @@ SELECT name, zip FROM customers
 
 Use asterisk symbol (\*) to retrieve all columns. This is a wild card statement.
 
-```
+```sql
 SELECT * FROM customers
 ```
 
@@ -169,7 +169,7 @@ SELECT * FROM customers
 
 It will retrieve data from the beginning.
 
-```
+```sql
 SELECT id, name FROM customers LIMIT 5
 ```
 
@@ -187,7 +187,7 @@ SELECT id, name FROM customers LIMIT 5
 
 Out of the two numbers given after the limit keyword, the first number is the starting point and second number is how many rows are retrieves.
 
-```
+```sql
 SELECT id, name FROM customers LIMIT 5, 10
 ```
 
@@ -210,19 +210,19 @@ SELECT id, name FROM customers LIMIT 5, 10
 
 fully qualified name. it has three parts separated by periods.
 
-```
+```sql
 SELECT customers.name FROM customers
 ```
 
 or
 
-```
+```sql
 SELECT customers.name FROM youtube.customers
 ```
 
 both are same as
 
-```
+```sql
 SELECT name FROM customers
 ```
 
@@ -232,7 +232,7 @@ SELECT name FROM customers
 
 sorted alphabetically. The default sort will be in **ascending** order.
 
-```
+```sql
 SELECT name FROM customers ORDER BY name
 ```
 
@@ -242,7 +242,7 @@ SELECT name FROM customers ORDER BY name
 
 sorted alphabetically.
 
-```
+```sql
 SELECT name, city FROM customers ORDER BY id
 ```
 
@@ -252,7 +252,7 @@ SELECT name, city FROM customers ORDER BY id
 
 This statement one order criteria first order by state and than by name.
 
-```
+```sql
 SELECT state, city, name FROM customers ORDER BY state, name
 ```
 
@@ -273,7 +273,7 @@ SELECT state, city, name FROM customers ORDER BY state, name
 
 alphabetically Descending sorting.
 
-```
+```sql
 SELECT name FROM customers ORDER BY name DESC
 ```
 
@@ -291,7 +291,7 @@ SELECT name, city FROM customers ORDER BY id DESC
 
 ### Retrieve the row whose ID is the highest.
 
-```
+```sql
 SELECT name, id FROM customers ORDER BY id DESC LIMIT 1
 ```
 
@@ -303,7 +303,7 @@ SELECT name, id FROM customers ORDER BY id DESC LIMIT 1
 
 ### Get specific row
 
-```
+```sql
 SELECT id, name FROM customers WHERE id=56
 ```
 
@@ -315,7 +315,7 @@ SELECT id, name FROM customers WHERE id=56
 
 ### Get rows but specific row not contain
 
-```
+```sql
 SELECT id, name FROM customers WHERE id != 56
 ```
 
@@ -330,7 +330,7 @@ SELECT id, name FROM customers WHERE id != 56
 
 ### Get rows less than specific number
 
-```
+```sql
 SELECT id, name FROM customers WHERE id < 4
 ```
 
@@ -344,7 +344,7 @@ SELECT id, name FROM customers WHERE id < 4
 
 ### Get rows less than and equal to specific number
 
-```
+```sql
 SELECT id, name FROM customers WHERE id <= 4
 ```
 
@@ -359,7 +359,7 @@ SELECT id, name FROM customers WHERE id <= 4
 
 ### Get rows grater than specific number
 
-```
+```sql
 SELECT id, name FROM customers WHERE id > 4
 ```
 
@@ -367,7 +367,7 @@ SELECT id, name FROM customers WHERE id > 4
 
 ### Get rows grater than equal to specific number
 
-```
+```sql
 SELECT id, name FROM customers WHERE id >= 4
 ```
 
@@ -375,7 +375,7 @@ SELECT id, name FROM customers WHERE id >= 4
 
 ### Get rows between two numbers
 
-```
+```sql
 SELECT id, name FROM customers WHERE id BETWEEN 25 AND 30
 ```
 
@@ -383,7 +383,7 @@ SELECT id, name FROM customers WHERE id BETWEEN 25 AND 30
 
 ### Get rows between filtering with string
 
-```
+```sql
 SELECT id, state FROM customers WHERE state = 'CA'
 ```
 
@@ -400,7 +400,7 @@ SELECT id, state FROM customers WHERE state = 'CA'
 
 ### Advanced Filtering Using AND
 
-```
+```sql
 SELECT name, state, city FROM customers WHERE state='CA' AND city = 'Hollywood'
 ```
 
@@ -412,7 +412,7 @@ SELECT name, state, city FROM customers WHERE state='CA' AND city = 'Hollywood'
 
 ### Advanced Filtering Using OR
 
-```
+```sql
 SELECT id, city FROM customers WHERE city='Denver' OR city='Provo'
 ```
 
@@ -431,7 +431,7 @@ This query mean:
 -   Aame as
 -   `id=2` must be in `city=Raleigh` but `id=1` should be in `city=Raleigh`
 
-```
+```sql
 SELECT id, name, city FROM customers WHERE id=1 or id=2 AND city = 'Raleigh'
 ```
 
@@ -446,7 +446,7 @@ SELECT id, name, city FROM customers WHERE id=1 or id=2 AND city = 'Raleigh'
 
 You use multiple **AND** and **OR** statement make sure that you use parentheses because
 
-```
+```sql
 SELECT id, name, city FROM customers WHERE id=1 or (id=2 AND city = 'Raleigh')
 ```
 
@@ -459,10 +459,10 @@ SELECT id, name, city FROM customers WHERE id=1 or (id=2 AND city = 'Raleigh')
 
 ### Filtering Using AND and OR with another way <span style="color:green">: Correct Way</span>
 
-<span style="color:green">testing</span>
+<p> set color working or not<span style="color:green">testing</span> </p>
 Get the row of whatever id matches
 
-```
+```sql
 SELECT id, name, city FROM customers WHERE (id=1 or id=2) AND city = 'Raleigh'
 ```
 
@@ -471,13 +471,14 @@ SELECT id, name, city FROM customers WHERE (id=1 or id=2) AND city = 'Raleigh'
 | 2   | Adams | Raleigh |
 
 <br />
+
 ### IN statement
 
 ### Multiple or statement: Not use this
 
 Because this is a long way instead use `IN` statement.
 
-```
+```sql
 SELECT name, state FROM customers WHERE state='CA' OR state='NC' OR state='NY'
 ```
 
@@ -494,7 +495,7 @@ SELECT name, state FROM customers WHERE state='CA' OR state='NC' OR state='NY'
 
 #### Not contains in state column
 
-```
+```sql
 SELECT name, state FROM customers WHERE state NOT IN ('CA', 'NC', 'NY')
 ```
 
@@ -510,9 +511,10 @@ SELECT name, state FROM customers WHERE state NOT IN ('CA', 'NC', 'NY')
 <br />
 
 ### Filtering wild card
-#### Start with begin
+#### Start with begin (%)
 All name start with `new`
-```
+
+```sql
 SELECT name FROM items WHERE name LIKE 'new%'
 ```
 
@@ -523,10 +525,11 @@ SELECT name FROM items WHERE name LIKE 'new%'
 | new curtain for bedroom       |
 | newspaper                     |
 
+<br />
 
-#### Start with end
+#### Start with end (%)
 All name start with `new`
-```
+```sql
 SELECT name FROM items WHERE name LIKE 'new%'
 ```
 
@@ -536,10 +539,10 @@ SELECT name FROM items WHERE name LIKE 'new%'
 |48 boxes of frogs     |
 |7 boxes of frogs      |
 
+<br />
 
-
-#### Word contains in between
-```
+#### Word contains in between (%)
+```sql
 SELECT name FROM items WHERE name LIKE '%computer%'
 ```
 
@@ -550,9 +553,11 @@ SELECT name FROM items WHERE name LIKE '%computer%'
 | supercomputer                 |
 | computer                      |
 
+<br />
 
-#### start and and with a specific word
-```
+#### start and and with a specific word (%)
+
+```sql
 SELECT city FROM customers WHERE city LIKE 'h%d'
 ```
 
@@ -561,3 +566,152 @@ SELECT city FROM customers WHERE city LIKE 'h%d'
 | Hollywood  |
 | Highland   |
 
+<br />
+
+####  only one character wild card (_)
+`_` mean only one character find but use `%` symbol to select multiple characters.
+
+```sql
+SELECT name FROM items WHERE name LIKE '_ boxes of frogs'
+```
+
+| city              |
+| :---------        |
+| 3 boxes of frogs  |
+| 7 boxes of frogs  |
+
+<br />
+
+### Regex Search
+#### Search a word
+
+```sql
+SELECT name FROM items WHERE name REGEXP 'new'
+```
+
+| name                           |
+| :--                            |
+| Brand New iMac Computer        |
+| New gym socks                  |
+| New ipad stolen from best buy  |
+| new curtain for bedroom        |
+| newspaper                      |
+
+<br />
+
+#### End with specific word
+
+```sql
+SELECT name FROM items WHERE name REGEXP '.boxes'
+```
+| name             |
+| :--              |
+|3 boxes of frogs  |
+|48 boxes of frogs |
+|7 boxes of frogs  |
+
+<br />
+
+#### OR statement in REGEXP
+
+```sql
+SELECT name FROM items WHERE name REGEXP 'gold|car'
+```
+| name               |
+| :--                |
+| traditional carpet |
+| gold necklace      |
+| used car           |
+| gold earring       |
+| scarf              |
+
+<br />
+
+#### Find specific numbers
+
+```sql
+SELECT name FROM items WHERE name REGEXP '[12345] boxes of frogs'
+```
+Same as
+```sql
+SELECT name FROM items WHERE name REGEXP '[1-5] boxes of frogs'
+```
+
+| name               |
+| :--                |
+| 3 boxes of frogs   |
+
+<br />
+
+#### Negate Numbers
+
+```sql
+SELECT name FROM items WHERE name REGEXP '[^12345] boxes of frogs'
+```
+
+| name               |
+| :--                |
+| 48 boxes of frogs  |
+| 7 boxes of frogs   |
+
+
+### Heading
+#### Join to column
+
+```sql
+SELECT CONCAT(city, ', ', state) FROM customers
+```
+
+| CONCATE(city, ', ', state)|
+| :--                       |
+|Adams, NY                  |
+|Raleigh, NC                |
+|Oakland, CA                |
+|Simmersville, AK           |
+|Newark, NJ                 |
+|Gary, IN                   |
+|Augusta, GA                |
+
+
+
+#### Join column and set a column name
+
+```sql
+SELECT CONCAT(city, ', ', state) AS new_address FROM customers
+```
+| new_address      |
+| :--              |
+|Adams, NY         |
+|Raleigh, NC       |
+|Oakland, CA       |
+|Simmersville, AK  |
+|Newark, NJ        |
+|Gary, IN          |
+|Augusta, GA       |
+
+
+
+#### perform mathematical calculation on column
+You can do all kinds of calculations. like `cost-1`, `cost+1`, `cost*1`, `cost/1`, `cost%1` and etc.
+
+```sql
+SELECT name, cost, cost-1 FROM items
+```
+
+| name                          | cost     | cost-1            |
+| :--                           | :--      | :--               |  
+| Brand New iMac Computer       | 149.99   |148.99000549316406 |
+| used diaper from my sister    | 2.04     |1.0399999618530273 |
+| Fresh apple pie               | 14.99    |13.989999771118164 |
+
+
+#### set a column name with mathematical calculation
+
+```sql
+SELECT name, cost, cost-1 AS sale_price FROM items
+```
+| name                          | cost     | sale_price        |
+| :--                           | :--      | :--               |  
+| Brand New iMac Computer       | 149.99   |148.99000549316406 |
+| used diaper from my sister    | 2.04     |1.0399999618530273 |
+| Fresh apple pie               | 14.99    |13.989999771118164 |
