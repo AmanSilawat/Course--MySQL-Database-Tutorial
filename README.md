@@ -459,7 +459,6 @@ SELECT id, name, city FROM customers WHERE id=1 or (id=2 AND city = 'Raleigh')
 
 ### Filtering Using AND and OR with another way <span style="color:green">: Correct Way</span>
 
-<p> set color working or not<span style="color:green">testing</span> </p>
 Get the row of whatever id matches
 
 ```sql
@@ -654,8 +653,9 @@ SELECT name FROM items WHERE name REGEXP '[^12345] boxes of frogs'
 | 48 boxes of frogs  |
 | 7 boxes of frogs   |
 
+<br />
 
-### Heading
+### Creating Custom Columns
 #### Join to column
 
 ```sql
@@ -672,7 +672,7 @@ SELECT CONCAT(city, ', ', state) FROM customers
 |Gary, IN                   |
 |Augusta, GA                |
 
-
+<br />
 
 #### Join column and set a column name
 
@@ -689,7 +689,7 @@ SELECT CONCAT(city, ', ', state) AS new_address FROM customers
 |Gary, IN          |
 |Augusta, GA       |
 
-
+<br />
 
 #### perform mathematical calculation on column
 You can do all kinds of calculations. like `cost-1`, `cost+1`, `cost*1`, `cost/1`, `cost%1` and etc.
@@ -704,6 +704,7 @@ SELECT name, cost, cost-1 FROM items
 | used diaper from my sister    | 2.04     |1.0399999618530273 |
 | Fresh apple pie               | 14.99    |13.989999771118164 |
 
+<br />
 
 #### set a column name with mathematical calculation
 
@@ -715,3 +716,100 @@ SELECT name, cost, cost-1 AS sale_price FROM items
 | Brand New iMac Computer       | 149.99   |148.99000549316406 |
 | used diaper from my sister    | 2.04     |1.0399999618530273 |
 | Fresh apple pie               | 14.99    |13.989999771118164 |
+
+<br />
+
+### Functions
+
+#### UPPER
+
+```sql
+SELECT name, UPPER(name) AS name_upp, city, UPPER(city) as city_upper FROM customers
+```
+
+
+|name          | name_upp       | city      | city_upper |
+|:--           |:--             |:--        |:--         |
+|Bucky Roberts | BUCKY ROBERTS  | Adams     | ADAMS      |
+|Noah Parker   | NOAH PARKER    | Raleigh   | RALEIGH    |
+|Kelsey Burger | KELSEY BURGER  | Oakland   | OAKLAN     |
+
+<br />
+
+### Aggregate Functions
+An aggregate function performs a calculation on a set of values, returns a single value. aggregate functions ignore null values.
+#### SQRT
+
+```sql
+SELECT cost, SQRT(cost) AS square_root FROM items
+```
+
+| cost   | square_root        |
+|:---    |:---                |
+| 149.99 | 12.247040683086018 |
+| 2.04   | 1.4282856723544584 |
+
+<br />
+
+#### SQRT
+
+```sql
+SELECT AVG(cost) AS average_cost FROM items
+```
+
+| average_cost       |
+|:---                |
+| 463.93710062742235 |
+
+<br />
+
+#### SUM
+
+```sql
+SELECT SUM(bids) AS total_bids FROM items
+```
+
+| total_bids |
+|:---        |
+| 10939      |
+
+<br />
+
+### Aggregate Functions more
+#### count the same name with in a column
+
+```sql
+SELECT COUNT(name) FROM items WHERE seller_id=18
+```
+
+| COUNT(name) |
+|:---         |
+| 4           |
+
+<br />
+
+#### Calculate the average of a column
+
+```sql
+SELECT AVG(cost) FROM items WHERE seller_id=18
+```
+
+| AVG(cost)           |
+|:---                 |
+| 237.77499914169312  |
+
+<br />
+
+#### Use multiple aggregate function
+
+```sql
+SELECT COUNT(*) AS item_count,
+Max(cost) AS max,
+AVG(cost) AS avg
+FROM items WHERE seller_id=1
+```
+
+|item_count |max | avg                 |
+|:--        |:-- |:---                 |
+|2          |2.5 | 2.2699999809265137  |
+
