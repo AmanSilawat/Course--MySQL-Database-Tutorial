@@ -959,3 +959,97 @@ AND seller_id IN(
 |name             | MIN(cost) |
 |:--              |:--        |
 |3 boxes of frogs | 30.49     |
+
+<br />
+
+### Join tables
+```sql
+SELECT customers.id, customers.name, items.name, items.cost
+FROM customers, items
+WHERE customers.id = seller_id
+ORDER BY customers.id
+```
+
+| id  | name          | name                       | cost  |
+| :-- | :--           | :--                        | :--   |
+| 1   | Bucky Roberts | bucket                     | 2.5   |
+| 1   | Bucky Roberts | used diaper from my sister | 2.04  |
+| 2   | Noah Parker   | babyfoot                   | 376.7 |
+
+<br />
+
+### Nick name
+```sql
+SELECT i.seller_id, i.name, c.id
+FROM customers AS c, items AS i
+WHERE i.seller_id = c.id
+```
+
+<br />
+
+### LEFT and RIGHT OUTER JOIN
+#### LEFT OUTER JOIN
+When ever use the keyword `LEFT` means to include all the rows from the table on the left is customer table. no matter if they have items or not.
+`ON` Define the relation.
+
+```sql
+SELECT customers.name, items.name
+FROM customers LEFT OUTER JOIN items
+ON customers.id=seller_id
+```
+|name         | name     |
+|:--          | :--      |
+|Teresa Smith | magazine |
+|Harry Potter | NULL     |
+|Sara Rehm    | NULL     |
+
+<br />
+
+#### RIGHT OUTER JOIN
+`ON` Define the relation.
+
+```sql
+SELECT customers.name, items.name
+FROM customers LEFT OUTER JOIN items
+ON customers.id=seller_id
+```
+|name         | name       |
+|:--          | :--        |
+|Kevin Grier  | saxophone  |
+|NULL         | bicycle    |
+|Patsy Cline  | man perfum |
+
+<br />
+
+### UNION
+when i use `UNION` than Automatically remove duplicate entry.
+
+```sql
+SELECT name, cost, bids FROM items WHERE bids > 190
+UNION 
+SELECT name, cost, bids FROM items WHERE cost > 1000
+```
+
+|name          | cost   | bids |
+|:-            | :-     | :-   |
+|baby seat     | 145.78 | 199  |
+|New gym socks | 2.34   | 566  |
+|night light   | 13.87  | 198  |
+
+<br />
+
+### UNION ALL
+when i use `UNION` than doesn't remove duplicate entry.
+
+```sql
+SELECT name, cost, bids FROM items WHERE bids > 190
+UNION All
+SELECT name, cost, bids FROM items WHERE cost > 1000
+```
+
+|name          | cost   | bids |
+|:-            | :-     | :-   |
+|baby seat     | 145.78 | 199  |
+|New gym socks | 2.34   | 566  |
+|night light   | 13.87  | 198  |
+|baby seat     | 145.78 | 199  |
