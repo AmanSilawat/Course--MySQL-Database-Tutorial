@@ -510,7 +510,9 @@ SELECT name, state FROM customers WHERE state NOT IN ('CA', 'NC', 'NY')
 <br />
 
 ### Filtering wild card
+
 #### Start with begin (%)
+
 All name start with `new`
 
 ```sql
@@ -518,7 +520,7 @@ SELECT name FROM items WHERE name LIKE 'new%'
 ```
 
 | name                          |
-| :--------------               |
+| :---------------------------- |
 | New gym socks                 |
 | New ipad stolen from best buy |
 | new curtain for bedroom       |
@@ -527,30 +529,33 @@ SELECT name FROM items WHERE name LIKE 'new%'
 <br />
 
 #### Start with end (%)
+
 All name start with `new`
+
 ```sql
 SELECT name FROM items WHERE name LIKE 'new%'
 ```
 
-| name                 |
-| :--------------      |
-|3 boxes of frogs      |
-|48 boxes of frogs     |
-|7 boxes of frogs      |
+| name              |
+| :---------------- |
+| 3 boxes of frogs  |
+| 48 boxes of frogs |
+| 7 boxes of frogs  |
 
 <br />
 
 #### Word contains in between (%)
+
 ```sql
 SELECT name FROM items WHERE name LIKE '%computer%'
 ```
 
-| name                          |
-| :--------------               |
-| Brand New iMac Computer       |
-| awesome alien computer game   |
-| supercomputer                 |
-| computer                      |
+| name                        |
+| :-------------------------- |
+| Brand New iMac Computer     |
+| awesome alien computer game |
+| supercomputer               |
+| computer                    |
 
 <br />
 
@@ -560,41 +565,43 @@ SELECT name FROM items WHERE name LIKE '%computer%'
 SELECT city FROM customers WHERE city LIKE 'h%d'
 ```
 
-| city       |
-| :--------- |
-| Hollywood  |
-| Highland   |
+| city      |
+| :-------- |
+| Hollywood |
+| Highland  |
 
 <br />
 
-####  only one character wild card (_)
+#### only one character wild card (\_)
+
 `_` mean only one character find but use `%` symbol to select multiple characters.
 
 ```sql
 SELECT name FROM items WHERE name LIKE '_ boxes of frogs'
 ```
 
-| city              |
-| :---------        |
-| 3 boxes of frogs  |
-| 7 boxes of frogs  |
+| city             |
+| :--------------- |
+| 3 boxes of frogs |
+| 7 boxes of frogs |
 
 <br />
 
 ### Regex Search
+
 #### Search a word
 
 ```sql
 SELECT name FROM items WHERE name REGEXP 'new'
 ```
 
-| name                           |
-| :--                            |
-| Brand New iMac Computer        |
-| New gym socks                  |
-| New ipad stolen from best buy  |
-| new curtain for bedroom        |
-| newspaper                      |
+| name                          |
+| :---------------------------- |
+| Brand New iMac Computer       |
+| New gym socks                 |
+| New ipad stolen from best buy |
+| new curtain for bedroom       |
+| newspaper                     |
 
 <br />
 
@@ -603,11 +610,12 @@ SELECT name FROM items WHERE name REGEXP 'new'
 ```sql
 SELECT name FROM items WHERE name REGEXP '.boxes'
 ```
-| name             |
-| :--              |
-|3 boxes of frogs  |
-|48 boxes of frogs |
-|7 boxes of frogs  |
+
+| name              |
+| :---------------- |
+| 3 boxes of frogs  |
+| 48 boxes of frogs |
+| 7 boxes of frogs  |
 
 <br />
 
@@ -616,8 +624,9 @@ SELECT name FROM items WHERE name REGEXP '.boxes'
 ```sql
 SELECT name FROM items WHERE name REGEXP 'gold|car'
 ```
+
 | name               |
-| :--                |
+| :----------------- |
 | traditional carpet |
 | gold necklace      |
 | used car           |
@@ -631,14 +640,16 @@ SELECT name FROM items WHERE name REGEXP 'gold|car'
 ```sql
 SELECT name FROM items WHERE name REGEXP '[12345] boxes of frogs'
 ```
+
 Same as
+
 ```sql
 SELECT name FROM items WHERE name REGEXP '[1-5] boxes of frogs'
 ```
 
-| name               |
-| :--                |
-| 3 boxes of frogs   |
+| name             |
+| :--------------- |
+| 3 boxes of frogs |
 
 <br />
 
@@ -648,29 +659,30 @@ SELECT name FROM items WHERE name REGEXP '[1-5] boxes of frogs'
 SELECT name FROM items WHERE name REGEXP '[^12345] boxes of frogs'
 ```
 
-| name               |
-| :--                |
-| 48 boxes of frogs  |
-| 7 boxes of frogs   |
+| name              |
+| :---------------- |
+| 48 boxes of frogs |
+| 7 boxes of frogs  |
 
 <br />
 
 ### Creating Custom Columns
+
 #### Join to column
 
 ```sql
 SELECT CONCAT(city, ', ', state) FROM customers
 ```
 
-| CONCATE(city, ', ', state)|
-| :--                       |
-|Adams, NY                  |
-|Raleigh, NC                |
-|Oakland, CA                |
-|Simmersville, AK           |
-|Newark, NJ                 |
-|Gary, IN                   |
-|Augusta, GA                |
+| CONCATE(city, ', ', state) |
+| :------------------------- |
+| Adams, NY                  |
+| Raleigh, NC                |
+| Oakland, CA                |
+| Simmersville, AK           |
+| Newark, NJ                 |
+| Gary, IN                   |
+| Augusta, GA                |
 
 <br />
 
@@ -679,30 +691,32 @@ SELECT CONCAT(city, ', ', state) FROM customers
 ```sql
 SELECT CONCAT(city, ', ', state) AS new_address FROM customers
 ```
+
 | new_address      |
-| :--              |
-|Adams, NY         |
-|Raleigh, NC       |
-|Oakland, CA       |
-|Simmersville, AK  |
-|Newark, NJ        |
-|Gary, IN          |
-|Augusta, GA       |
+| :--------------- |
+| Adams, NY        |
+| Raleigh, NC      |
+| Oakland, CA      |
+| Simmersville, AK |
+| Newark, NJ       |
+| Gary, IN         |
+| Augusta, GA      |
 
 <br />
 
 #### perform mathematical calculation on column
+
 You can do all kinds of calculations. like `cost-1`, `cost+1`, `cost*1`, `cost/1`, `cost%1` and etc.
 
 ```sql
 SELECT name, cost, cost-1 FROM items
 ```
 
-| name                          | cost     | cost-1            |
-| :--                           | :--      | :--               |  
-| Brand New iMac Computer       | 149.99   |148.99000549316406 |
-| used diaper from my sister    | 2.04     |1.0399999618530273 |
-| Fresh apple pie               | 14.99    |13.989999771118164 |
+| name                       | cost   | cost-1             |
+| :------------------------- | :----- | :----------------- |
+| Brand New iMac Computer    | 149.99 | 148.99000549316406 |
+| used diaper from my sister | 2.04   | 1.0399999618530273 |
+| Fresh apple pie            | 14.99  | 13.989999771118164 |
 
 <br />
 
@@ -711,11 +725,12 @@ SELECT name, cost, cost-1 FROM items
 ```sql
 SELECT name, cost, cost-1 AS sale_price FROM items
 ```
-| name                          | cost     | sale_price        |
-| :--                           | :--      | :--               |  
-| Brand New iMac Computer       | 149.99   |148.99000549316406 |
-| used diaper from my sister    | 2.04     |1.0399999618530273 |
-| Fresh apple pie               | 14.99    |13.989999771118164 |
+
+| name                       | cost   | sale_price         |
+| :------------------------- | :----- | :----------------- |
+| Brand New iMac Computer    | 149.99 | 148.99000549316406 |
+| used diaper from my sister | 2.04   | 1.0399999618530273 |
+| Fresh apple pie            | 14.99  | 13.989999771118164 |
 
 <br />
 
@@ -727,17 +742,18 @@ SELECT name, cost, cost-1 AS sale_price FROM items
 SELECT name, UPPER(name) AS name_upp, city, UPPER(city) as city_upper FROM customers
 ```
 
-
-|name          | name_upp       | city      | city_upper |
-|:--           |:--             |:--        |:--         |
-|Bucky Roberts | BUCKY ROBERTS  | Adams     | ADAMS      |
-|Noah Parker   | NOAH PARKER    | Raleigh   | RALEIGH    |
-|Kelsey Burger | KELSEY BURGER  | Oakland   | OAKLAN     |
+| name          | name_upp      | city    | city_upper |
+| :------------ | :------------ | :------ | :--------- |
+| Bucky Roberts | BUCKY ROBERTS | Adams   | ADAMS      |
+| Noah Parker   | NOAH PARKER   | Raleigh | RALEIGH    |
+| Kelsey Burger | KELSEY BURGER | Oakland | OAKLAN     |
 
 <br />
 
 ### Aggregate Functions
+
 An aggregate function performs a calculation on a set of values, returns a single value. aggregate functions ignore null values.
+
 #### SQRT
 
 ```sql
@@ -745,7 +761,7 @@ SELECT cost, SQRT(cost) AS square_root FROM items
 ```
 
 | cost   | square_root        |
-|:---    |:---                |
+| :----- | :----------------- |
 | 149.99 | 12.247040683086018 |
 | 2.04   | 1.4282856723544584 |
 
@@ -758,7 +774,7 @@ SELECT AVG(cost) AS average_cost FROM items
 ```
 
 | average_cost       |
-|:---                |
+| :----------------- |
 | 463.93710062742235 |
 
 <br />
@@ -770,12 +786,13 @@ SELECT SUM(bids) AS total_bids FROM items
 ```
 
 | total_bids |
-|:---        |
+| :--------- |
 | 10939      |
 
 <br />
 
 ### Aggregate Functions more
+
 #### count the same name with in a column
 
 ```sql
@@ -783,7 +800,7 @@ SELECT COUNT(name) FROM items WHERE seller_id=18
 ```
 
 | COUNT(name) |
-|:---         |
+| :---------- |
 | 4           |
 
 <br />
@@ -794,9 +811,9 @@ SELECT COUNT(name) FROM items WHERE seller_id=18
 SELECT AVG(cost) FROM items WHERE seller_id=18
 ```
 
-| AVG(cost)           |
-|:---                 |
-| 237.77499914169312  |
+| AVG(cost)          |
+| :----------------- |
+| 237.77499914169312 |
 
 <br />
 
@@ -809,7 +826,136 @@ AVG(cost) AS avg
 FROM items WHERE seller_id=1
 ```
 
-|item_count |max | avg                 |
-|:--        |:-- |:---                 |
-|2          |2.5 | 2.2699999809265137  |
+| item_count | max | avg                |
+| :--------- | :-- | :----------------- |
+| 2          | 2.5 | 2.2699999809265137 |
 
+<br />
+
+### Group By statement
+
+```sql
+SELECT seller_id, COUNT(*) AS item_count FROM items GROUP BY seller_id
+```
+
+| seller_id | item_count |
+| :-------- | :--------- |
+| 1         | 2          |
+| 2         | 2          |
+| 3         | 1          |
+| 4         | 1          |
+
+<br />
+
+#### HAVING statement
+
+`HAVING` keyword is used only with `GROUP BY`
+
+```sql
+SELECT seller_id,
+COUNT(*) AS item_count
+FROM items
+GROUP BY seller_id
+HAVING COUNT(*) >= 3
+```
+
+| seller_id | item_count |
+| :-------- | :--------- |
+| 6         | 3          |
+| 8         | 3          |
+| 10        | 5          |
+| 15        | 4          |
+
+<br />
+
+#### Order By Group
+
+```sql
+SELECT seller_id,
+COUNT(*) AS item_count
+FROM items
+GROUP BY seller_id
+HAVING COUNT(*) >= 3
+ORDER BY item_count DESC
+```
+
+| seller_id | item_count |
+| :-------- | :--------- |
+| 10        | 5          |
+| 15        | 4          |
+| 8         | 3          |
+| 6         | 3          |
+
+<br />
+
+### subQuery
+
+#### Without subQuery
+
+```sql
+SELECT name, cost
+FROM items
+WHERE cost > (463)
+ORDER BY cost DESC
+```
+
+#### With subQuery
+
+```sql
+SELECT name, cost
+FROM items
+WHERE cost > (
+	SELECT AVG(cost) FROM items
+)
+ORDER BY cost DESC
+```
+
+<br />
+
+### Another subQuery
+#### sample example
+```sql
+SELECT seller_id FROM items WHERE name LIKE '%boxes of frogs'
+```
+
+
+
+|seller_id |
+|:--       |
+|68        |
+|6         |
+|18        |
+
+<br />
+
+#### Without subQuery
+
+```sql
+SELECT name,
+MIN(cost)
+FROM items
+WHERE name LIKE '%boxes of frogs'
+AND seller_id IN(68, 6, 18)
+```
+
+|name             | MIN(cost) |
+|:--              |:--        |
+|3 boxes of frogs | 30.49     |
+
+<br />
+
+#### With subQuery
+
+```sql
+SELECT name,
+MIN(cost)
+FROM items
+WHERE name LIKE '%boxes of frogs'
+AND seller_id IN(
+	SELECT seller_id FROM items WHERE name LIKE '%boxes of frogs'
+)
+```
+
+|name             | MIN(cost) |
+|:--              |:--        |
+|3 boxes of frogs | 30.49     |
