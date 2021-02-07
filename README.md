@@ -391,7 +391,7 @@ SELECT id, state FROM customers WHERE state = 'CA'
 | :-- | :---- |
 | 3   | CA    |
 | 11  | CA    |
-| 32  | CA    | 
+| 32  | CA    |
 | 51  | CA    |
 | 64  | CA    |
 | 75  | CA    |
@@ -404,9 +404,9 @@ SELECT id, state FROM customers WHERE state = 'CA'
 SELECT name, state, city FROM customers WHERE state='CA' AND city = 'Hollywood'
 ```
 
-| name            | state | city      |
-| :--             | :---- | :----     |
-| Jack Nicholson  | CA    | Hollywood |
+| name           | state | city      |
+| :------------- | :---- | :-------- |
+| Jack Nicholson | CA    | Hollywood |
 
 <br />
 
@@ -416,50 +416,148 @@ SELECT name, state, city FROM customers WHERE state='CA' AND city = 'Hollywood'
 SELECT id, city FROM customers WHERE city='Denver' OR city='Provo'
 ```
 
-| id    | city   |
-| :---- | :----  |
-| 16    | Denver |
-| 17    | Provo  |
-| 60    | Provo  |
-
+| id  | city   |
+| :-- | :----- |
+| 16  | Denver |
+| 17  | Provo  |
+| 60  | Provo  |
 
 ### Advanced Filtering Using AND and OR <span style="color:red">: Wrong Way</span>
+
 `id=1` or `id=2` is true but city portion is not correct.
-This query mean: 
-- `id=1` must be in `city=Raleigh` but `id=2` should be in `city=Raleigh` 
-- Aame as
-- `id=2` must be in `city=Raleigh` but `id=1` should be in `city=Raleigh` 
+This query mean:
+
+-   `id=1` must be in `city=Raleigh` but `id=2` should be in `city=Raleigh`
+-   Aame as
+-   `id=2` must be in `city=Raleigh` but `id=1` should be in `city=Raleigh`
 
 ```
 SELECT id, name, city FROM customers WHERE id=1 or id=2 AND city = 'Raleigh'
 ```
 
-| id    | name          | city                                       |
-| :---- | :----         | :----                                      |
-| 1     | Bucky Roberts | <span style="color:red">Noah Parker</span> |
-| 2     | Adams         | Raleigh                                    |
+| id  | name          | city                                       |
+| :-- | :------------ | :----------------------------------------- |
+| 1   | Bucky Roberts | <span style="color:red">Noah Parker</span> |
+| 2   | Adams         | Raleigh                                    |
 
 <br />
 
 ### Advanced Filtering Using AND and OR <span style="color:green">: Correct Way</span>
+
 You use multiple **AND** and **OR** statement make sure that you use parentheses because
+
 ```
 SELECT id, name, city FROM customers WHERE id=1 or (id=2 AND city = 'Raleigh')
 ```
 
-| id    | name          | city                                         |
-| :---- | :----         | :----                                        |
-| 1     | Bucky Roberts | <span style="color:green">Noah Parker</span> |
-| 2     | Adams         | Raleigh                                      |
+| id  | name          | city                                         |
+| :-- | :------------ | :------------------------------------------- |
+| 1   | Bucky Roberts | <span style="color:green">Noah Parker</span> |
+| 2   | Adams         | Raleigh                                      |
 
 <br />
 
 ### Filtering Using AND and OR with another way <span style="color:green">: Correct Way</span>
+
+<span style="color:green">testing</span>
 Get the row of whatever id matches
+
 ```
 SELECT id, name, city FROM customers WHERE (id=1 or id=2) AND city = 'Raleigh'
 ```
 
-| id    | name  | city    |
-| :---- | :---- | :----   |
-| 2     | Adams | Raleigh |
+| id  | name  | city    |
+| :-- | :---- | :------ |
+| 2   | Adams | Raleigh |
+
+<br />
+### IN statement
+
+### Multiple or statement: Not use this
+
+Because this is a long way instead use `IN` statement.
+
+```
+SELECT name, state FROM customers WHERE state='CA' OR state='NC' OR state='NY'
+```
+
+| name           | state |
+| :------------- | :---- |
+| Bucky Roberts  | NY    |
+| Noah Parker    | NC    |
+| Kelsey Burger  | CA    |
+| Jack Nicholson | CA    |
+| Devon Myers    | NY    |
+| Harry Brown    | NC    |
+
+<br />
+
+#### Not contains in state column
+
+```
+SELECT name, state FROM customers WHERE state NOT IN ('CA', 'NC', 'NY')
+```
+
+| name            | state |
+| :-------------- | :---- |
+| Corey Smith     | AK    |
+| Harry Potter    | NJ    |
+| Henry Jackson   | IN    |
+| Cynthia Alvarez | GA    |
+| Teresa Smith    | PA    |
+| Gary Foster     | IN    |
+
+<br />
+
+### Filtering wild card
+#### Start with begin
+All name start with `new`
+```
+SELECT name FROM items WHERE name LIKE 'new%'
+```
+
+| name                          |
+| :--------------               |
+| New gym socks                 |
+| New ipad stolen from best buy |
+| new curtain for bedroom       |
+| newspaper                     |
+
+
+#### Start with end
+All name start with `new`
+```
+SELECT name FROM items WHERE name LIKE 'new%'
+```
+
+| name                 |
+| :--------------      |
+|3 boxes of frogs      |
+|48 boxes of frogs     |
+|7 boxes of frogs      |
+
+
+
+#### Word contains in between
+```
+SELECT name FROM items WHERE name LIKE '%computer%'
+```
+
+| name                          |
+| :--------------               |
+| Brand New iMac Computer       |
+| awesome alien computer game   |
+| supercomputer                 |
+| computer                      |
+
+
+#### start and and with a specific word
+```
+SELECT city FROM customers WHERE city LIKE 'h%d'
+```
+
+| city       |
+| :--------- |
+| Hollywood  |
+| Highland   |
+
