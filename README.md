@@ -391,9 +391,75 @@ SELECT id, state FROM customers WHERE state = 'CA'
 | :-- | :---- |
 | 3   | CA    |
 | 11  | CA    |
-| 32  | CA    |
+| 32  | CA    | 
 | 51  | CA    |
 | 64  | CA    |
 | 75  | CA    |
 
 <br />
+
+### Advanced Filtering Using AND
+
+```
+SELECT name, state, city FROM customers WHERE state='CA' AND city = 'Hollywood'
+```
+
+| name            | state | city      |
+| :--             | :---- | :----     |
+| Jack Nicholson  | CA    | Hollywood |
+
+<br />
+
+### Advanced Filtering Using OR
+
+```
+SELECT id, city FROM customers WHERE city='Denver' OR city='Provo'
+```
+
+| id    | city   |
+| :---- | :----  |
+| 16    | Denver |
+| 17    | Provo  |
+| 60    | Provo  |
+
+
+### Advanced Filtering Using AND and OR <span style="color:red">: Wrong Way</span>
+`id=1` or `id=2` is true but city portion is not correct.
+This query mean: 
+- `id=1` must be in `city=Raleigh` but `id=2` should be in `city=Raleigh` 
+- Aame as
+- `id=2` must be in `city=Raleigh` but `id=1` should be in `city=Raleigh` 
+
+```
+SELECT id, name, city FROM customers WHERE id=1 or id=2 AND city = 'Raleigh'
+```
+
+| id    | name          | city                                       |
+| :---- | :----         | :----                                      |
+| 1     | Bucky Roberts | <span style="color:red">Noah Parker</span> |
+| 2     | Adams         | Raleigh                                    |
+
+<br />
+
+### Advanced Filtering Using AND and OR <span style="color:green">: Correct Way</span>
+You use multiple **AND** and **OR** statement make sure that you use parentheses because
+```
+SELECT id, name, city FROM customers WHERE id=1 or (id=2 AND city = 'Raleigh')
+```
+
+| id    | name          | city                                         |
+| :---- | :----         | :----                                        |
+| 1     | Bucky Roberts | <span style="color:green">Noah Parker</span> |
+| 2     | Adams         | Raleigh                                      |
+
+<br />
+
+### Filtering Using AND and OR with another way <span style="color:green">: Correct Way</span>
+Get the row of whatever id matches
+```
+SELECT id, name, city FROM customers WHERE (id=1 or id=2) AND city = 'Raleigh'
+```
+
+| id    | name  | city    |
+| :---- | :---- | :----   |
+| 2     | Adams | Raleigh |
