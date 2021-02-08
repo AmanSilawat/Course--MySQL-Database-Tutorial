@@ -913,18 +913,18 @@ ORDER BY cost DESC
 <br />
 
 ### Another subQuery
+
 #### sample example
+
 ```sql
 SELECT seller_id FROM items WHERE name LIKE '%boxes of frogs'
 ```
 
-
-
-|seller_id |
-|:--       |
-|68        |
-|6         |
-|18        |
+| seller_id |
+| :-------- |
+| 68        |
+| 6         |
+| 18        |
 
 <br />
 
@@ -938,9 +938,9 @@ WHERE name LIKE '%boxes of frogs'
 AND seller_id IN(68, 6, 18)
 ```
 
-|name             | MIN(cost) |
-|:--              |:--        |
-|3 boxes of frogs | 30.49     |
+| name             | MIN(cost) |
+| :--------------- | :-------- |
+| 3 boxes of frogs | 30.49     |
 
 <br />
 
@@ -956,13 +956,14 @@ AND seller_id IN(
 )
 ```
 
-|name             | MIN(cost) |
-|:--              |:--        |
-|3 boxes of frogs | 30.49     |
+| name             | MIN(cost) |
+| :--------------- | :-------- |
+| 3 boxes of frogs | 30.49     |
 
 <br />
 
 ### Join tables
+
 ```sql
 SELECT customers.id, customers.name, items.name, items.cost
 FROM customers, items
@@ -971,7 +972,7 @@ ORDER BY customers.id
 ```
 
 | id  | name          | name                       | cost  |
-| :-- | :--           | :--                        | :--   |
+| :-- | :------------ | :------------------------- | :---- |
 | 1   | Bucky Roberts | bucket                     | 2.5   |
 | 1   | Bucky Roberts | used diaper from my sister | 2.04  |
 | 2   | Noah Parker   | babyfoot                   | 376.7 |
@@ -979,6 +980,7 @@ ORDER BY customers.id
 <br />
 
 ### Nick name
+
 ```sql
 SELECT i.seller_id, i.name, c.id
 FROM customers AS c, items AS i
@@ -988,7 +990,9 @@ WHERE i.seller_id = c.id
 <br />
 
 ### LEFT and RIGHT OUTER JOIN
+
 #### LEFT OUTER JOIN
+
 When ever use the keyword `LEFT` means to include all the rows from the table on the left is customer table. no matter if they have items or not.
 `ON` Define the relation.
 
@@ -997,15 +1001,17 @@ SELECT customers.name, items.name
 FROM customers LEFT OUTER JOIN items
 ON customers.id=seller_id
 ```
-|name         | name     |
-|:--          | :--      |
-|Teresa Smith | magazine |
-|Harry Potter | NULL     |
-|Sara Rehm    | NULL     |
+
+| name         | name     |
+| :----------- | :------- |
+| Teresa Smith | magazine |
+| Harry Potter | NULL     |
+| Sara Rehm    | NULL     |
 
 <br />
 
 #### RIGHT OUTER JOIN
+
 `ON` Define the relation.
 
 ```sql
@@ -1013,32 +1019,35 @@ SELECT customers.name, items.name
 FROM customers LEFT OUTER JOIN items
 ON customers.id=seller_id
 ```
-|name         | name       |
-|:--          | :--        |
-|Kevin Grier  | saxophone  |
-|NULL         | bicycle    |
-|Patsy Cline  | man perfum |
+
+| name        | name       |
+| :---------- | :--------- |
+| Kevin Grier | saxophone  |
+| NULL        | bicycle    |
+| Patsy Cline | man perfum |
 
 <br />
 
 ### UNION
+
 when i use `UNION` than Automatically remove duplicate entry.
 
 ```sql
 SELECT name, cost, bids FROM items WHERE bids > 190
-UNION 
+UNION
 SELECT name, cost, bids FROM items WHERE cost > 1000
 ```
 
-|name          | cost   | bids |
-|:-            | :-     | :-   |
-|baby seat     | 145.78 | 199  |
-|New gym socks | 2.34   | 566  |
-|night light   | 13.87  | 198  |
+| name          | cost   | bids |
+| :------------ | :----- | :--- |
+| baby seat     | 145.78 | 199  |
+| New gym socks | 2.34   | 566  |
+| night light   | 13.87  | 198  |
 
 <br />
 
 ### UNION ALL
+
 when i use `UNION` than doesn't remove duplicate entry.
 
 ```sql
@@ -1047,9 +1056,81 @@ UNION All
 SELECT name, cost, bids FROM items WHERE cost > 1000
 ```
 
-|name          | cost   | bids |
-|:-            | :-     | :-   |
-|baby seat     | 145.78 | 199  |
-|New gym socks | 2.34   | 566  |
-|night light   | 13.87  | 198  |
-|baby seat     | 145.78 | 199  |
+| name          | cost   | bids |
+| :------------ | :----- | :--- |
+| baby seat     | 145.78 | 199  |
+| New gym socks | 2.34   | 566  |
+| night light   | 13.87  | 198  |
+| baby seat     | 145.78 | 199  |
+
+<br />
+
+### Full text searching
+
+```sql
+SELECT name, cost
+FROM items
+WHERE MATCH(
+    name
+)
+AGAINST(
+    '+baby -coat' IN BOOLEAN MODE
+)
+```
+
+| name        | cost   |
+| :---------- | :----- |
+| baby seat   | 145.78 |
+| baby soap   | 12.7   |
+| baby bottle | 27.98  |
+
+### INSERT INTO
+
+#### insert a row
+
+You can not change order of columns.
+
+```sql
+INSERT INTO items VALUES('101','bacon strips','9.95','1', '0')
+```
+
+<br />
+
+#### insert a row (order doesn't matter)
+
+In this query order doesn't matter.
+
+```sql
+INSERT INTO items(name, cost, seller_id, bids, id) VALUES('bacon strips','9.95','1', '0', '101')
+```
+
+<br />
+
+
+### Insert multiple rows
+
+```sql
+INSERT INTO items(id, name, cost, seller_id, bids) VALUES
+('104','beef chops','7.99','1','0'),
+('105','jelly pockets','4.50','1','0'),
+('106','sack of ham','5.50','1','0')
+```
+
+### UPDATE row
+#### UPDATE Single column value
+
+```sql
+UPDATE items SET name='puddinghammock' WHERE id=106
+```
+
+#### UPDATE Multiple column value
+
+```sql
+UPDATE items SET name='basket', bids=66 WHERE id=106
+```
+
+### Delete row
+
+```sql
+DELETE FROM items WHERE id=104
+```
