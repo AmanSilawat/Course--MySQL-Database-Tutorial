@@ -2,6 +2,18 @@
 
 Referenced link: [thenewboston - MySQL Database Tutorial](https://www.youtube.com/playlist?list=PL32BC9C878BA72085)
 
+## Working through command Line
+- Start you lampp/xampp server.
+- Run in terminal 
+    ```sql
+    sudo '/opt/lampp/bin/mysql'
+    ```
+- Select a database run in terminal
+    ```sql
+    use database_name
+    ```
+- Run any sql query in terminal.
+
 ## Introduction to Databases
 
 ### What is a database?
@@ -183,7 +195,7 @@ SELECT id, name FROM customers LIMIT 5
 
 <br />
 
-### Retrieve data from a column to a specific length
+### Retrieve data from a column to a specific length with starting point
 
 Out of the two numbers given after the limit keyword, the first number is the starting point and second number is how many rows are retrieves.
 
@@ -283,7 +295,7 @@ SELECT name FROM customers ORDER BY name DESC
 
 alphabetically Descending sorting.
 
-```
+```sql
 SELECT name, city FROM customers ORDER BY id DESC
 ```
 
@@ -421,6 +433,8 @@ SELECT id, city FROM customers WHERE city='Denver' OR city='Provo'
 | 16  | Denver |
 | 17  | Provo  |
 | 60  | Provo  |
+
+<br />
 
 ### Advanced Filtering Using AND and OR <span style="color:red">: Wrong Way</span>
 
