@@ -1134,3 +1134,53 @@ UPDATE items SET name='basket', bids=66 WHERE id=106
 ```sql
 DELETE FROM items WHERE id=104
 ```
+
+
+### CREATE TABLE
+```sql
+CREATE TABLE users(
+	id int,
+    username varchar(30),
+    password varchar(20),
+    PRIMARY KEY(id)
+)
+```
+
+### NOT NULL & AUTO INCREMENT
+
+```sql
+CREATE TABLE bacon(
+	id int NOT NULL AUTO_INCREMENT,
+    username varchar(30) NOT NULL,
+    password varchar(20) NOT NULL,
+    PRIMARY KEY(id)
+)
+```
+
+### Add a column
+```sql
+ALTER TABLE bacon ADD sample_column varchar(10)
+```
+
+### Remove a column
+```sql
+ALTER TABLE bacon DROP COLUMN sample_column
+```
+
+### Remove a Table
+```sql
+DROP TABLE bacon
+```
+
+### Rename table name
+```sql
+RENAME TABLE customers TO users
+```
+
+### view
+view not contains actual real data. just holding data from another tables
+
+```sql
+CREATE VIEW mostbirds AS
+SELECT id, name, bids FROM items ORDER BY bids DESC LIMIT 10
+```
