@@ -976,6 +976,19 @@ AND seller_id IN(
 
 <br />
 
+### one more example with subSuery
+```sql
+select count(c.*)
+from (
+    select release_year
+    from films
+    group by release_year
+    having count(title) > 200
+) as c
+```
+
+<br />
+
 ### Join tables
 
 ```sql
@@ -1198,3 +1211,22 @@ view not contains actual real data. just holding data from another tables
 CREATE VIEW mostbirds AS
 SELECT id, name, bids FROM items ORDER BY bids DESC LIMIT 10
 ```
+
+
+### divide any value than return Integer valu
+```sql
+select (10/3)
+```
+
+| ?column?    |
+| :---------- |
+| 3           |
+
+### divide any value than return Integer valu
+```sql
+select (10/3.0)
+```
+
+| ?column?    |
+| :---------- |
+| 3.333333333 |
